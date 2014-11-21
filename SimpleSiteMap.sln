@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleSiteMap.Core", "Code\SimpleSiteMap.Core\SimpleSiteMap.Core.csproj", "{9EA83113-5750-4A41-83E0-8236BCD433F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleSitemap.Service", "Code\SimpleSitemap.Service\SimpleSitemap.Service.csproj", "{9EA83113-5750-4A41-83E0-8236BCD433F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleSiteMap.Tests", "Code\SimpleSiteMap.Tests\SimpleSiteMap.Tests.csproj", "{139B63A9-DF98-4431-90C8-F0D3C15005CC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleSitemap.Tests", "Code\SimpleSitemap.Tests\SimpleSitemap.Tests.csproj", "{139B63A9-DF98-4431-90C8-F0D3C15005CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
