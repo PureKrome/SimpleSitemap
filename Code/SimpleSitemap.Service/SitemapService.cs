@@ -25,6 +25,11 @@ namespace SimpleSitemap.Core
                 throw new ArgumentOutOfRangeException("pageSize");
             }
 
+            if (pageSize > 50000)
+            {
+                throw new ArgumentOutOfRangeException("pageSize", "PageSize argument is too large. Search engines have a common restriction of 50,000 items per 'page' (and also usually 10mb). Please reduce this pageSize value to a number <= 50,000.");
+            }
+
             // We display either the full result OR the index with paged links.
             var root = sitemapNodes.Count > pageSize
                 ? CreateXmlSitemapIndex(sitemapNodes, pageSize)
