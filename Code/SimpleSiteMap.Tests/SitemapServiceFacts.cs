@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 using Shouldly;
-using SimpleSitemap.Core;
+using SimpleSiteMap.Service;
 using Xunit;
 
 namespace SimpleSiteMap.Tests

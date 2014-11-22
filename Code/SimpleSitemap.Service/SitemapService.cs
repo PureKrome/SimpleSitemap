@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
-namespace SimpleSitemap.Core
+namespace SimpleSiteMap.Service
 {
     public class SitemapService
     {

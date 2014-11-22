@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SimpleSitemap.Core
+namespace SimpleSiteMap.Service
 {
     public class SitemapNode
     {

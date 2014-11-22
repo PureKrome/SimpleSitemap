@@ -1,4 +1,4 @@
-﻿namespace SimpleSitemap.Core
+﻿namespace SimpleSiteMap.Service
 {
     /// <summary>
     /// Defines the volatility of content tracked via a sitemap node
