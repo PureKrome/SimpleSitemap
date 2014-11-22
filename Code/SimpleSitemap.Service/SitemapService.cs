@@ -36,7 +36,7 @@ namespace SimpleSitemap.Core
                 : CreateXmlUrlSet(sitemapNodes);
 
             // Convert the xml to a string.
-            string xmlResult = null;
+            string xmlResult;
             using (var memoryStream = new MemoryStream())
             {
                 using (var writer = new StreamWriter(memoryStream, Encoding.UTF8))
