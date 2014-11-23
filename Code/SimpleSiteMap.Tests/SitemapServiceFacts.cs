@@ -36,7 +36,7 @@ namespace SimpleSiteMap.Tests
                 var siteMapService = new SitemapService();
 
                 // Act.
-                var result = siteMapService.ConvertToXmlSiteMap(data, 10);
+                var result = siteMapService.ConvertToXmlSitemap(data, 10);
 
                 // Assert.
                 var expectedXml = File.ReadAllText("Result Data\\100ItemsWithPageSize10.xml");
@@ -52,7 +52,7 @@ namespace SimpleSiteMap.Tests
                 var siteMapService = new SitemapService();
 
                 // Act.
-                var result = siteMapService.ConvertToXmlSiteMap(data, 2);
+                var result = siteMapService.ConvertToXmlSitemap(data, 2);
 
                 // Assert.
                 var expectedXml = File.ReadAllText("Result Data\\2ItemsWithPageSize2.xml");
@@ -69,7 +69,7 @@ namespace SimpleSiteMap.Tests
                 var siteMapService = new SitemapService();
 
                 // Act.
-                var result = siteMapService.ConvertToXmlSiteMap(data, 10);
+                var result = siteMapService.ConvertToXmlSitemap(data, 10);
 
                 // Assert.
                 var expectedXml = File.ReadAllText("Result Data\\0ItemsWithPageSize10.xml");

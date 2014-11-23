@@ -13,7 +13,7 @@ namespace SimpleSiteMap.Service
         private const string SitemapsNamespace = "http://www.sitemaps.org/schemas/sitemap/0.9";
         private readonly string _byteOrderMarkUtf8 = Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble());
 
-        public string ConvertToXmlSiteMap(ICollection<SitemapNode> sitemapNodes, int pageSize)
+        public string ConvertToXmlSitemap(ICollection<SitemapNode> sitemapNodes, int pageSize)
         {
             if (sitemapNodes == null)
             {
