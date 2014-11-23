@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SimpleSiteMap.Core")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("SimpleSiteMap.Service")]
+[assembly: AssemblyDescription("A simple way to generate a sitemap for your .NET web application")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SimpleSiteMap.Core")]
+[assembly: AssemblyCompany("World Domination Technologies Pty. Ltd.")]
+[assembly: AssemblyProduct("SimpleSiteMap.Service")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

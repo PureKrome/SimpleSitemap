@@ -7,8 +7,8 @@
     <ProjectGuid>{9EA83113-5750-4A41-83E0-8236BCD433F7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SimpleSitemap.Core</RootNamespace>
-    <AssemblyName>SimpleSitemap.Core</AssemblyName>
+    <RootNamespace>SimpleSiteMap.Service</RootNamespace>
+    <AssemblyName>SimpleSiteMap.Service</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
