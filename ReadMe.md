@@ -22,6 +22,34 @@ The wiki [has answers all these questions](https://github.com/PureKrome/SimpleSi
 ## Code examples:
 - [Basic example with a small data collection / set](https://github.com/PureKrome/SimpleSitemap/wiki/Small-data-collection-example).
 - [Huge data collection / set example](https://github.com/PureKrome/SimpleSitemap/wiki/Huge-data-collection-example).
+---
+Output examples:
+
+```xml
+    <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+        <sitemap>
+            <loc>http://www.myWebSite.com/sitemap/products/?page=1</loc>
+            <lastmod>2014-11-24T09:22-08:00</lastmod>
+        </sitemap>
+        <sitemap>...</sitemap>
+        ....
+    </sitemapindex>
+```
+
+or
+
+```xml
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+        <url>
+            <loc>http://www.myWebSite.com/products/1</loc>
+            <lastmod>2014-11-21T06:31-08:00</lastmod>
+            <changefreq>hourly</changefreq>
+            <priority>1</priority>
+        </url>
+        <url>....</url>
+        ....
+    </urlset>
+```
 
 ---
 Robots will :heart: you!  
