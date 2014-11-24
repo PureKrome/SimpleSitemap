@@ -19,10 +19,9 @@ namespace SimpleSiteMap.Tests
 
                 for (int i = 0; i < numberOfNodes; i++)
                 {
-                    result.Add(new SitemapNode(new Uri("http://www.foo.com/sitemap/foos"))
-                    {
-                        LastModified = startTime.AddSeconds(-i)
-                    });
+                    result.Add(new SitemapNode(
+                        new Uri("http://www.foo.com/sitemap/foos"),
+                        startTime.AddSeconds(-i)));
                 }
 
                 return result;

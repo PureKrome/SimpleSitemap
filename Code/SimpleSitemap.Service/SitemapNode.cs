@@ -4,12 +4,13 @@ namespace SimpleSiteMap.Service
 {
     public class SitemapNode
     {
-        public SitemapNode(Uri url)
+        public SitemapNode(Uri url,
+            DateTime lastModified)
         {
             Url = url;
             Priority = 0.5;
             Frequency = SitemapFrequency.Daily;
-            LastModified = DateTime.UtcNow;
+            LastModified = lastModified;
         }
 
         public Uri Url { get; set; }
