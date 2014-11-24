@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>SimpleSitemap</id>
+        <version>1.0.0</version>
+        <title>SimpleSitemap: making a web application sitemap ... simple!</title>
+        <authors>Justin Adler</authors>
+        <owners>Justin Adler</owners>
+        <projectUrl>https://github.com/PureKrome/SimpleSitemap</projectUrl>
+        <iconUrl>http://i.imgur.com/bR4Yf.jpg</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>SimpleSitemap is a lite library that helps you create web sitemaps for collections or lists of items. 
+        
+        These sitemaps follow the Sitemap Protocol. Both sitemapindex and urlset links are generated, based upon the data collection size and 'page size'.
+        
+        Examples of this could be a list of your users, or products, or questions.</description>
+        <summary>This simple library helps generate search engine sitemap's for ASP.NET web applications.</summary>
+        <releaseNotes />
+        <copyright>2014</copyright>
+        <language>en-au</language>
+        <tags>simple sitemap sitemaps robots robots.txt unicorn magicalunicorn magical-unicorn worlddomination worldomination</tags>
+    </metadata>
+    <files>
+        <file src="..\Code\SimpleSitemap.Service\bin\Release\SimpleSiteMap.Service.dll" target="lib\net45\SimpleSiteMap.Service.dll" />
+        <file src="ReadMe.txt" target="ReadMe.txt" />
+    </files>
+</package>
