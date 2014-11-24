@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
@@ -31,7 +32,8 @@ namespace SimpleSiteMap.Tests
             public void GivenSomDataThatIsLargerThanASinglePage_ConvertToSiteMap_CreatesASitemapResult()
             {
                 // Arrange.
-                var data = CreateFakeSitemapNodes(100, new DateTime(2014, 11, 21, 18, 58, 00));
+                var startDate = DateTime.SpecifyKind(new DateTime(2014, 11, 21, 18, 58, 00), DateTimeKind.Utc);
+                var data = CreateFakeSitemapNodes(100, startDate);
                 var siteMapService = new SitemapService();
 
                 // Act.
@@ -47,7 +49,8 @@ namespace SimpleSiteMap.Tests
             public void GivenSomeDataThatIsTheSameSizeAsASinglePage_ConvertToSiteMap_CreatesAUrlsetResult()
             {
                 // Arrange.
-                var data = CreateFakeSitemapNodes(2, new DateTime(2014, 11, 21, 18, 58, 00));
+                var startDate = DateTime.SpecifyKind(new DateTime(2014, 11, 21, 18, 58, 00), DateTimeKind.Utc);
+                var data = CreateFakeSitemapNodes(2, startDate);
                 var siteMapService = new SitemapService();
 
                 // Act.
@@ -64,7 +67,8 @@ namespace SimpleSiteMap.Tests
             public void GivenNoData_ConvertToSiteMap_CreatesAUrlsetWithNoNodes()
             {
                 // Arrange.
-                var data = CreateFakeSitemapNodes(0, new DateTime(2014, 11, 21, 18, 58, 00));
+                var startDate = DateTime.SpecifyKind(new DateTime(2014, 11, 21, 18, 58, 00), DateTimeKind.Utc);
+                var data = CreateFakeSitemapNodes(0, startDate);
                 var siteMapService = new SitemapService();
 
                 // Act.
@@ -82,7 +86,8 @@ namespace SimpleSiteMap.Tests
             {
                 // Arrange.
                 const int pageSize = 10;
-                var data = CreateFakeSitemapNodes(100, new DateTime(2014, 11, 21, 18, 58, 00));
+                var startDate = DateTime.SpecifyKind(new DateTime(2014, 11, 21, 18, 58, 00), DateTimeKind.Utc);
+                var data = CreateFakeSitemapNodes(100, startDate);
                 // Note: now we partition this data set, with the most recently modified, first.
                 var partitionedData = data
                     .OrderByDescending(d => d.LastModified)
@@ -110,7 +115,8 @@ namespace SimpleSiteMap.Tests
             public void GivenNoPartitionedData_ConvertToSitemap_CreatesASitemapResult()
             {
                 // Arrange.
-                var partitionedData = CreateFakeSitemapNodes(0, new DateTime(2014, 11, 21, 18, 58, 00));
+                var startDate = DateTime.SpecifyKind(new DateTime(2014, 11, 21, 18, 58, 00), DateTimeKind.Utc);
+                var partitionedData = CreateFakeSitemapNodes(0, startDate);
                 var siteMapService = new SitemapService();
 
                 // Act.
