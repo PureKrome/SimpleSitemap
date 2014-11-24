@@ -1,10 +1,32 @@
+![SimpleSitemap](http://i.imgur.com/Dex0etR.png)
+---
+[![Build status](https://ci.appveyor.com/api/projects/status/93rpnnv58hhxo9fi?svg=true)](https://ci.appveyor.com/project/PureKrome/simplesitemap) [![](http://img.shields.io/nuget/v/SimpleSitemap.svg?style=flat-square)](http://www.nuget.org/packages/SimpleSitemap/) ![](http://img.shields.io/nuget/dt/SimpleSitemap.svg?style=flat-square)
 
+This simple package helps generate search engine sitemap's for ASP.NET web applications.
 
-## Simple SiteMap
+---
 
-This library creates a simple SiteMap for a .NET application (typically a web application).
+## Installation
 
-It's best used when creating dynamic sitemaps for Search Engines, like a list to all the users or all the products for sale.
+[![](http://i.imgur.com/vig3SXL.png)](https://www.nuget.org/packages/SimpleSitemap/)
 
+Package Name: `SimpleSitemap`  
+CLI: `install-package SimpleSitemap`  
 
--- End of Readme.
+---
+
+What is a Sitemap? Are sitemaps and robots.txt the same thing? Why do I need a sitemap at all?
+
+The wiki [has answers all these questions](https://github.com/PureKrome/SimpleSitemap/wiki).
+    
+## Code examples:
+- [Basic example with a small data collection / set](https://github.com/PureKrome/SimpleSitemap/wiki/Small-data-collection-example).
+- [Huge data collection / set example](https://github.com/PureKrome/SimpleSitemap/wiki/Huge-data-collection-example).
+
+---
+Robots will :heart: you!  
+![](http://i.giphy.com/rSCVJasn8uZP2.gif)
+
+---
+[![I'm happy to accept tips](http://img.shields.io/gittip/purekrome.svg?style=flat-square)](https://gratipay.com/PureKrome/)  
+![Lic: MIT](http://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)
