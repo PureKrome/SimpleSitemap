@@ -13,25 +13,38 @@ namespace SimpleSiteMap.Service
         private const string SitemapsNamespace = "http://www.sitemaps.org/schemas/sitemap/0.9";
         private readonly string _byteOrderMarkUtf8 = Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble());
 
-        public string ConvertToXmlSitemap(ICollection<SitemapNode> sitemapNodes, int pageSize)
+        /// <summary>
+        /// Creates a Sitemap or a Urlset from the given collection data.
+        /// </summary>
+        /// <remarks>the collection data can be either the <i>full</i> dataset or a <i>partitioned</i> dataset. If the data is a full dataset, then a page size is required.</remarks>
+        /// <param name="sitemapNodes">the data collection.</param>
+        /// <param name="pageSize">how many nodes per page. This is <b>required</b> when the data is not already partitioned.</param>
+        /// <returns></returns>
+        public string ConvertToXmlSitemapOrUrlset(IList<SitemapNode> sitemapNodes, int? pageSize = null)
         {
             if (sitemapNodes == null)
             {
                 throw new ArgumentNullException("sitemapNodes");
             }
 
-            if (pageSize <= 0)
+            if (pageSize.HasValue &&
+                pageSize <= 0)
             {
                 throw new ArgumentOutOfRangeException("pageSize");
             }
 
-            if (pageSize > 50000)
+            if (pageSize.HasValue &&
+                pageSize > 50000)
             {
-                throw new ArgumentOutOfRangeException("pageSize", "PageSize argument is too large. Search engines have a common restriction of 50,000 items per 'page' (and also usually 10mb). Please reduce this pageSize value to a number <= 50,000.");
+                throw new ArgumentOutOfRangeException("pageSize",
+                    "PageSize argument is too large. Search engines have a common restriction of 50,000 items per 'page' (and also usually 10mb). Please reduce this pageSize value to a number <= 50,000.");
             }
 
             // We display either the full result OR the index with paged links.
-            var root = sitemapNodes.Count > pageSize
+            var root = (!pageSize.HasValue &&
+                        sitemapNodes.Any()) ||
+                       (pageSize.HasValue &&
+                        sitemapNodes.Count > pageSize)
                 ? CreateXmlSitemapIndex(sitemapNodes, pageSize)
                 : CreateXmlUrlSet(sitemapNodes);
 
@@ -56,7 +69,7 @@ namespace SimpleSiteMap.Service
             return xmlResult;
         }
 
-        private static XElement CreateXmlSitemapIndex(ICollection<SitemapNode> sitemapNodes, int pageSize)
+        private static XElement CreateXmlSitemapIndex(IList<SitemapNode> sitemapNodes, int? pageSize)
         {
             if (sitemapNodes == null)
             {
@@ -69,17 +82,21 @@ namespace SimpleSiteMap.Service
 
             if (sitemapNodes.Any())
             {
-                // Partition the results to get the groups...
-                var partitionedNodes = sitemapNodes
-                    .Select((i, index) => new
-                    {
-                        i,
-                        index
-                    })
-                    .GroupBy(group => group.index/pageSize, element => element.i)
-                    .Select(x => x.First())
-                    .ToList();
+                // If the collection isn't already partitioned into the 'pages', then we need to
+                // calculate that now.
+                var partitionedNodes = !pageSize.HasValue
+                    ? sitemapNodes
+                    : sitemapNodes
+                        .Select((i, index) => new
+                        {
+                            i,
+                            index
+                        })
+                        .GroupBy(group => group.index/pageSize, element => element.i)
+                        .Select(x => x.First())
+                        .ToList();
 
+                // Display each 'page' link.
                 for (int i = 0; i < partitionedNodes.Count; i++)
                 {
                     var loc = new XElement(xmlns + "loc",
