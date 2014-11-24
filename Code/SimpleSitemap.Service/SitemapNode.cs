@@ -16,5 +16,14 @@ namespace SimpleSiteMap.Service
         public DateTime LastModified { get; set; }
         public SitemapFrequency Frequency { get; set; }
         public double Priority { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0}; {1}",
+                Url == null
+                    ? "--no url set"
+                    : Url.AbsoluteUri,
+                LastModified);
+        }
     }
 }
