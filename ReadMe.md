@@ -22,6 +22,7 @@ The wiki [has answers all these questions](https://github.com/PureKrome/SimpleSi
 ## Code examples:
 - [Basic example with a small data collection / set](https://github.com/PureKrome/SimpleSitemap/wiki/Small-data-collection-example).
 - [Huge data collection / set example](https://github.com/PureKrome/SimpleSitemap/wiki/Huge-data-collection-example).
+
 ---
 Output examples:
 
