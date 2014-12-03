@@ -14,11 +14,18 @@
 
     The wiki has all the code examples for you : https://github.com/PureKrome/SimpleSitemap/wiki
 
-    - Getting started with a small data collection : 
-      https://github.com/PureKrome/SimpleSitemap/wiki/Small-data-collection-example
+    Site maps are generally two lists
+    1) Summary of all the pages to crawl. (the SitemapIndex).
+    2) A page of links to the actual resources to index. (Urlset).
 
-    - Getting tricky with a huge data collection : 
-      https://github.com/PureKrome/SimpleSitemap/wiki/Huge-data-collection-example
+
+    - Start out generating a Sitemap Index.
+      (This is a summary list of what the web crawler needs to end up crawling):
+      https://github.com/PureKrome/SimpleSitemap/wiki/SitemapIndex-example
+
+    - Next, create the Urlset list.
+      (This is a list of the actual resources which the web crawler will crawl):
+      https://github.com/PureKrome/SimpleSitemap/wiki/Urlset-example
 
 
     For all other questions, please hit up the GitHub repo (https://github.com/PureKrome/SimpleSitemap)
