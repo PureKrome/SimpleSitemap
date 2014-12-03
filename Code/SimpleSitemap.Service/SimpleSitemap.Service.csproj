@@ -39,6 +39,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SitemapFrequency.cs" />
     <Compile Include="SitemapNode.cs" />
+    <Compile Include="SitemapNodeExtensions.cs" />
     <Compile Include="SitemapService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

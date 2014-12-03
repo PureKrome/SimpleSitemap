@@ -11,65 +11,49 @@ namespace SimpleSiteMap.Service
     public class SitemapService
     {
         private const string SitemapsNamespace = "http://www.sitemaps.org/schemas/sitemap/0.9";
-        private readonly string _byteOrderMarkUtf8 = Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble());
+        private static readonly string ByteOrderMarkUtf8 = Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble());
 
         /// <summary>
-        /// Creates a Sitemap or a Urlset from the given collection data.
+        /// Creates a sitemap for the given collection.
         /// </summary>
-        /// <remarks>the collection data can be either the <i>full</i> dataset or a <i>partitioned</i> dataset. If the data is a full dataset, then a page size is required.</remarks>
-        /// <param name="sitemapNodes">the data collection.</param>
-        /// <param name="pageSize">how many nodes per page. This is <b>required</b> when the data is not already partitioned.</param>
+        /// <remarks>The resultant sitemap will create links to a route that will generate urlset's.</remarks>
+        /// <param name="sitemapNodes">the collection of sitemap nodes to render.</param>
         /// <returns></returns>
-        public string ConvertToXmlSitemapOrUrlset(IList<SitemapNode> sitemapNodes, int? pageSize = null)
+        public string ConvertToXmlSitemap(ICollection<SitemapNode> sitemapNodes)
         {
             if (sitemapNodes == null)
             {
                 throw new ArgumentNullException("sitemapNodes");
             }
 
-            if (pageSize.HasValue &&
-                pageSize <= 0)
-            {
-                throw new ArgumentOutOfRangeException("pageSize");
-            }
+            var xElement = CreateXmlSitemapIndex(sitemapNodes);
 
-            if (pageSize.HasValue &&
-                pageSize > 50000)
-            {
-                throw new ArgumentOutOfRangeException("pageSize",
-                    "PageSize argument is too large. Search engines have a common restriction of 50,000 items per 'page' (and also usually 10mb). Please reduce this pageSize value to a number <= 50,000.");
-            }
-
-            // We display either the full result OR the index with paged links.
-            var root = (!pageSize.HasValue &&
-                        sitemapNodes.Any()) ||
-                       (pageSize.HasValue &&
-                        sitemapNodes.Count > pageSize)
-                ? CreateXmlSitemapIndex(sitemapNodes, pageSize)
-                : CreateXmlUrlSet(sitemapNodes);
-
-            // Convert the xml to a string.
-            string xmlResult;
-            using (var memoryStream = new MemoryStream())
-            {
-                using (var writer = new StreamWriter(memoryStream, Encoding.UTF8))
-                {
-                    root.Save(writer);
-                }
-
-                xmlResult = Encoding.UTF8.GetString(memoryStream.ToArray());
-            }
-
-            if (!string.IsNullOrWhiteSpace(xmlResult) &&
-                xmlResult.StartsWith(_byteOrderMarkUtf8))
-            {
-                xmlResult = xmlResult.Remove(0, _byteOrderMarkUtf8.Length);
-            }
-
-            return xmlResult;
+            return xElement != null 
+                ? ConvertXElementToString(xElement) 
+                : null;
         }
 
-        private static XElement CreateXmlSitemapIndex(IList<SitemapNode> sitemapNodes, int? pageSize)
+        /// <summary>
+        /// Creates a urlset for the given collection.
+        /// </summary>
+        /// <remarks>The resultant urlset will create links to the actual resource to be searched.</remarks>
+        /// <param name="sitemapNodes">the collection of sitemap nodes to render.</param>
+        /// <returns></returns>
+        public string ConvertToXmlUrlset(ICollection<SitemapNode> sitemapNodes)
+        {
+            if (sitemapNodes == null)
+            {
+                throw new ArgumentNullException("sitemapNodes");
+            }
+
+            var xElement = CreateXmlUrlSet(sitemapNodes);
+
+            return xElement != null
+                ? ConvertXElementToString(xElement)
+                : null;
+        }
+
+        private static XElement CreateXmlSitemapIndex(ICollection<SitemapNode> sitemapNodes)
         {
             if (sitemapNodes == null)
             {
@@ -82,28 +66,15 @@ namespace SimpleSiteMap.Service
 
             if (sitemapNodes.Any())
             {
-                // If the collection isn't already partitioned into the 'pages', then we need to
-                // calculate that now.
-                var partitionedNodes = !pageSize.HasValue
-                    ? sitemapNodes
-                    : sitemapNodes
-                        .Select((i, index) => new
-                        {
-                            i,
-                            index
-                        })
-                        .GroupBy(group => group.index/pageSize, element => element.i)
-                        .Select(x => x.First())
-                        .ToList();
-
                 // Display each 'page' link.
-                for (int i = 0; i < partitionedNodes.Count; i++)
+                var page = 0;
+                foreach (var sitemapNode in sitemapNodes)
                 {
                     var loc = new XElement(xmlns + "loc",
-                        Uri.EscapeUriString(string.Format("{0}/?page={1}", partitionedNodes[i].Url, i + 1)));
+                        Uri.EscapeUriString(string.Format("{0}/?page={1}", sitemapNode.Url, ++page)));
 
                     var lastMod = new XElement(xmlns + "lastmod",
-                        partitionedNodes[i].LastModified.ToString("yyyy-MM-ddTHH:mm:sszzz", CultureInfo.InvariantCulture));
+                        sitemapNode.LastModified.ToString("yyyy-MM-ddTHH:mm:sszzz", CultureInfo.InvariantCulture));
 
                     root.Add(new XElement(xmlns + "sitemap", loc, lastMod));
                 }
@@ -139,6 +110,34 @@ namespace SimpleSiteMap.Service
             }
 
             return root;
+        }
+
+        private static string ConvertXElementToString(XElement xElement)
+        {
+            if (xElement == null)
+            {
+                throw new ArgumentNullException("xElement");
+            }
+
+            // Convert the xml to a string.
+            string xmlResult;
+            using (var memoryStream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(memoryStream, Encoding.UTF8))
+                {
+                    xElement.Save(writer);
+                }
+
+                xmlResult = Encoding.UTF8.GetString(memoryStream.ToArray());
+            }
+
+            if (!string.IsNullOrWhiteSpace(xmlResult) &&
+                xmlResult.StartsWith(ByteOrderMarkUtf8))
+            {
+                xmlResult = xmlResult.Remove(0, ByteOrderMarkUtf8.Length);
+            }
+
+            return xmlResult;
         }
     }
 }

@@ -57,13 +57,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Result Data\0ItemsWithPageSize10.xml">
+    <Content Include="Result Data\SitemapWith0Items.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Result Data\100ItemsWithPageSize10.xml">
+    <Content Include="Result Data\UrlsetWith0Items.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Result Data\2ItemsWIthPageSize2.xml">
+    <Content Include="Result Data\SitemapWith10Items.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Result Data\UrlsetWith10Items.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
