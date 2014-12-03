@@ -20,8 +20,8 @@ What is a Sitemap? Are sitemaps and robots.txt the same thing? Why do I need a s
 The wiki [has answers all these questions](https://github.com/PureKrome/SimpleSitemap/wiki).
     
 ## Code examples:
-- [Basic example with a small data collection / set](https://github.com/PureKrome/SimpleSitemap/wiki/Small-data-collection-example).
-- [Huge data collection / set example](https://github.com/PureKrome/SimpleSitemap/wiki/Huge-data-collection-example).
+- [Start out generating a Sitemap Index.](https://github.com/PureKrome/SimpleSitemap/wiki/sitemapindex-example).
+- [Next, create the Urlset list.](https://github.com/PureKrome/SimpleSitemap/wiki/urlset-example).
 
 ---
 Output examples:
