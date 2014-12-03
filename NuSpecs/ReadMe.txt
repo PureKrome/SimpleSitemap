@@ -21,7 +21,7 @@
 
     - Start out generating a Sitemap Index.
       (This is a summary list of what the web crawler needs to end up crawling):
-      https://github.com/PureKrome/SimpleSitemap/wiki/SitemapIndex-example
+      https://github.com/PureKrome/SimpleSitemap/wiki/Sitemap-Index-example
 
     - Next, create the Urlset list.
       (This is a list of the actual resources which the web crawler will crawl):
