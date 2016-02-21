@@ -100,7 +100,7 @@ namespace SimpleSiteMap.Service
                 var lastMod = new XElement(xmlns + "lastmod",
                     node.LastModified.ToString("yyyy-MM-ddTHH:mm:sszzz", CultureInfo.InvariantCulture));
                 var changeFrequency = new XElement(xmlns + "changefreq", node.Frequency.ToString().ToLowerInvariant());
-                var priority = new XElement(xmlns + "priority", node.Priority.ToString().ToLowerInvariant());
+                var priority = new XElement(xmlns + "priority", node.Priority.ToString(CultureInfo.InvariantCulture).ToLowerInvariant());
 
                 root.Add(new XElement(xmlns + "url",
                     loc,
