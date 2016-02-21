@@ -1,6 +1,10 @@
 ![SimpleSitemap](http://i.imgur.com/Dex0etR.png)
 ---
-[![Build status](https://ci.appveyor.com/api/projects/status/93rpnnv58hhxo9fi?svg=true)](https://ci.appveyor.com/project/PureKrome/simplesitemap) [![](http://img.shields.io/nuget/v/SimpleSitemap.svg?style=flat-square)](http://www.nuget.org/packages/SimpleSitemap/) ![](http://img.shields.io/nuget/dt/SimpleSitemap.svg?style=flat-square)
+
+| Production | Dev |
+| ---------- | --- |
+| [![Build status](https://ci.appveyor.com/api/projects/status/nic069dfvkfib2t2?svg=true)](https://ci.appveyor.com/project/PureKrome/simplesitemap-btng4) | [![Build status](https://ci.appveyor.com/api/projects/status/93rpnnv58hhxo9fi?svg=true)](https://ci.appveyor.com/project/PureKrome/simplesitemap)
+| [![](http://img.shields.io/nuget/v/SimpleSitemap.svg?style=flat-square)](https://www.myget.org/feed/simplesitemap/package/nuget/SimpleSitemap) ![](http://img.shields.io/nuget/dt/SimpleSitemap.svg?style=flat-square) | [![](https://img.shields.io/myget/simplesitemap/vpre/SimpleSitemap.svg?style=flat-square)](https://www.myget.org/feed/simplesitemap/package/nuget/SimpleSitemap) ![](https://img.shields.io/myget/simplesitemap/dt/SimpleSitemap.svg?style=flat-square) | 
 
 This simple package helps generate search engine sitemap's for ASP.NET web applications.
 
