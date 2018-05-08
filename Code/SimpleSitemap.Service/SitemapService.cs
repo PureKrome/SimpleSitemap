@@ -96,17 +96,29 @@ namespace SimpleSiteMap.Service
 
             foreach (var node in sitemapNodes)
             {
+                var urlElement = new XElement(xmlns + "url");
+
                 var loc = new XElement(xmlns + "loc", Uri.EscapeUriString(node.Url.AbsoluteUri));
+                urlElement.Add(loc);
+
                 var lastMod = new XElement(xmlns + "lastmod",
                     node.LastModified.ToString("yyyy-MM-ddTHH:mm:sszzz", CultureInfo.InvariantCulture));
-                var changeFrequency = new XElement(xmlns + "changefreq", node.Frequency.ToString().ToLowerInvariant());
-                var priority = new XElement(xmlns + "priority", node.Priority.ToString(CultureInfo.InvariantCulture).ToLowerInvariant());
+                urlElement.Add(lastMod);
 
-                root.Add(new XElement(xmlns + "url",
-                    loc,
-                    lastMod,
-                    changeFrequency,
-                    priority));
+                if (node.Frequency.HasValue)
+                {
+                    var changeFrequency = new XElement(xmlns + "changefreq", node.Frequency.Value.ToString().ToLowerInvariant());
+                    urlElement.Add(changeFrequency);
+                }
+
+                if (node.Priority.HasValue)
+                {
+
+                    var priority = new XElement(xmlns + "priority", node.Priority.Value.ToString(CultureInfo.InvariantCulture).ToLowerInvariant());
+                    urlElement.Add(priority);
+                }
+
+                root.Add(urlElement);
             }
 
             return root;
