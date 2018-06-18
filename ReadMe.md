@@ -5,7 +5,7 @@
 
 | NuGet | | |
 | ----- | - | - |
-| Production | [![](http://img.shields.io/nuget/v/SimpleSitemap.svg?style=flat-square)](https://www.myget.org/feed/simplesitemap/package/nuget/SimpleSitemap) | ![](http://img.shields.io/nuget/dt/SimpleSitemap.svg?style=flat-square) |
+| Production | [![](http://img.shields.io/nuget/v/SimpleSitemap.svg?style=flat-square)](https://www.nuget.org/packages/SimpleSitemap/) | ![](http://img.shields.io/nuget/dt/SimpleSitemap.svg?style=flat-square) |
 | Development | [![](https://img.shields.io/myget/simplesitemap/vpre/SimpleSitemap.svg?style=flat-square)](https://www.myget.org/feed/simplesitemap/package/nuget/SimpleSitemap) | ![](https://img.shields.io/myget/simplesitemap/dt/SimpleSitemap.svg?style=flat-square) |
 
 This simple package helps generate search engine sitemap's for ASP.NET web applications.
