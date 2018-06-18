@@ -55,7 +55,7 @@ artifacts:
 
 deploy:
   - provider: NuGet
-    server: https://www.myget.org/F/pk-development/api/v2/package
+    server: https://www.myget.org/F/simplesitemap/api/v2/package
     api_key:
       secure: 36bcjhroAjclbHs7e7oh6Hsv4lokADI6xaQcCYZmux2Sdu/IIoktFc9ORK3DTdKo
     skip_symbols: true
