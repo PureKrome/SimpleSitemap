@@ -23,13 +23,13 @@ namespace SimpleSiteMap
         {
             if (sitemapNodes == null)
             {
-                throw new ArgumentNullException("sitemapNodes");
+                throw new ArgumentNullException(nameof(sitemapNodes));
             }
 
             var xElement = CreateXmlSitemapIndex(sitemapNodes);
 
-            return xElement != null 
-                ? ConvertXElementToString(xElement) 
+            return xElement != null
+                ? ConvertXElementToString(xElement)
                 : null;
         }
 
@@ -43,7 +43,7 @@ namespace SimpleSiteMap
         {
             if (sitemapNodes == null)
             {
-                throw new ArgumentNullException("sitemapNodes");
+                throw new ArgumentNullException(nameof(sitemapNodes));
             }
 
             var xElement = CreateXmlUrlSet(sitemapNodes);
@@ -87,7 +87,7 @@ namespace SimpleSiteMap
         {
             if (sitemapNodes == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException(nameof(sitemapNodes));
             }
 
             XNamespace xmlns = SitemapsNamespace;
@@ -113,7 +113,6 @@ namespace SimpleSiteMap
 
                 if (node.Priority.HasValue)
                 {
-
                     var priority = new XElement(xmlns + "priority", node.Priority.Value.ToString(CultureInfo.InvariantCulture).ToLowerInvariant());
                     urlElement.Add(priority);
                 }
@@ -128,7 +127,7 @@ namespace SimpleSiteMap
         {
             if (xElement == null)
             {
-                throw new ArgumentNullException("xElement");
+                throw new ArgumentNullException(nameof(xElement));
             }
 
             // Convert the xml to a string.
