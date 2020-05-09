@@ -6,20 +6,21 @@
 # - To publish a live NuGet package, create a tag on master branch.
 #
 
+
+### ***********************************************************************************************************
+### REQUIRED: AV UI => Project Settings -> General -> "Enable secure variables in all Pull Requests" TICKED ON.
+### ***********************************************************************************************************
+
+
 version: '{build}.0.0-dev'
-configuration: Release
-os: Visual Studio 2017
+image: Ubuntu
 pull_requests:
   do_not_increment_build_number: true
-environment:
-  project_name: SimpleSitemap
-  library_project_file: 'src\%project_name%\%project_name%.csproj'
-  tests_project_file: 'tests\%project_name%.Tests\%project_name%.Tests.csproj'
-  codecov_token:
-    secure: ETxnka7bJBQFzlBccjWieEj17sKs3JCZZtY86UoBl5mNeOrPyBbh7tf10aozBZ28
-branches:
-  only:
-    - master
+matrix:
+  fast_finish: true
+configuration:
+  - Debug
+  - Release
 
 # Override the 'version' if this is a GH-tag-commit -or- this is a custom branch (i.e not 'master').
 init:
@@ -30,28 +31,51 @@ init:
           Update-AppveyorBuild -Version "$env:APPVEYOR_REPO_TAG_NAME"
       }
       iex ((new-object net.webclient).DownloadString('https://gist.githubusercontent.com/PureKrome/0f79e25693d574807939/raw/f5b40256fc2ca77d49f1c7773d28406152544c1e/appveyor-build-info.ps'))
-                                       
+  
 before_build:
   # Display .NET Core version
-  - cmd: dotnet --info
-  # Install Codecov prerequisite
-  - choco install opencover.portable
-  - choco install codecov
-  # Display minimal restore text
-  - cmd: dotnet restore --verbosity quiet
+  - dotnet --info
 
 build_script:
-  - dotnet build -c %CONFIGURATION% -v minimal /p:Version=%APPVEYOR_BUILD_VERSION% /p:DebugType=full --no-restore
+  - dotnet restore --verbosity quiet
+  - ps: dotnet build -c $env:CONFIGURATION -v minimal /p:Version=$env:APPVEYOR_BUILD_VERSION --no-restore
 
 test_script:
-  - OpenCover.Console.exe -register:user -target:"dotnet.exe" -targetargs:"test tests\SimpleSitemap.Tests -c %CONFIGURATION% -v minimal --no-restore --no-build " -filter:"+[SimpleSitemap.*]* -[SimpleSitemap.*.Tests]*" -output:".\coverage.xml" -oldstyle
+  - ps: |
+      if ($env:CONFIGURATION -eq 'Debug')
+      {
+          dotnet test -c $env:CONFIGURATION -v minimal --no-build --collect:"XPlat Code Coverage" --settings coverlet.runsettings --results-directory './CodeCoverageResults'
+      }
+      else
+      {
+          dotnet test -c $env:CONFIGURATION -v minimal --no-build
+      }
 
+
+# We only:
+#   - Send DEBUG results up to codecov.
+#   - Pack for RELEASE only.
 after_test:
-  - codecov -f "coverage.xml" -t $(codecov_token)
-  - dotnet pack -c %CONFIGURATION% /p:Version=%APPVEYOR_BUILD_VERSION% --no-restore --no-build
+  - ps: |
+      if ($env:CONFIGURATION -eq 'Debug')
+      {
+          # Currently, the bash script version is better than the .exe version.
+          Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
+          bash codecov.sh -s './CodeCoverageResults/' -f '*.xml' -Z
+      }
+      
+      if ($env:CONFIGURATION -eq 'Release')
+      {
+          dotnet pack -c $env:CONFIGURATION --include-symbols -p:SymbolPackageFormat=snupkg /p:Version=$env:APPVEYOR_BUILD_VERSION --no-build
+      }
 
 artifacts:
   - path: '**\*.nupkg'
+    name: nuget-packages
+    type: NuGetPackage
+  - path: '**\*.snupkg'
+    name: nuget-symbols
+    type: NuGetPackage
 
 deploy:
   - provider: NuGet
@@ -59,17 +83,13 @@ deploy:
     api_key:
       secure: 36bcjhroAjclbHs7e7oh6Hsv4lokADI6xaQcCYZmux2Sdu/IIoktFc9ORK3DTdKo
     skip_symbols: true
-    artifact: /.*\.nupkg/
+    artifact: nuget-packages # MyGet doesn't support symbols packages.
     on:
-      appveyor_repo_tag: false
+      APPVEYOR_REPO_TAG: false
+
   - provider: NuGet
     api_key:
       secure: jfcUvHZhgnUboplqTBDWr8mG5PIlrgBv5TA2fhhop4ZSiDxskyy+RtYyeHoduJFR
-    skip_symbols: true
-    artifact: /.*\.nupkg/
     on:
       branch: master
-      appveyor_repo_tag: true
-
-cache:
-  - packages -> **\packages.config
+      APPVEYOR_REPO_TAG: true

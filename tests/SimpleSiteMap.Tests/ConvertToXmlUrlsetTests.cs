@@ -21,7 +21,7 @@ namespace SimpleSiteMap.Tests
             var result = siteMapService.ConvertToXmlUrlset(data);
 
             // Assert.
-            var expectedXml = File.ReadAllText("Result Data\\UrlsetWith10Items.xml");
+            var expectedXml = File.ReadAllText("Result Data//UrlsetWith10Items.xml");
 
             // My sample data is a bit messed up - which is why I have to do the `replace`.
             CompareTwoUrlsetDocuments(result, expectedXml);
@@ -39,7 +39,7 @@ namespace SimpleSiteMap.Tests
             var result = siteMapService.ConvertToXmlUrlset(data);
 
             // Assert.
-            var expectedXml = File.ReadAllText("Result Data\\UrlsetWith10ItemsNoChangeFreqOrPriority.xml");
+            var expectedXml = File.ReadAllText("Result Data//UrlsetWith10ItemsNoChangeFreqOrPriority.xml");
 
             // My sample data is a bit messed up - which is why I have to do the `replace`.
             CompareTwoUrlsetDocuments(result, expectedXml);
@@ -57,7 +57,7 @@ namespace SimpleSiteMap.Tests
             var result = siteMapService.ConvertToXmlUrlset(data);
 
             // Assert.
-            var expectedXml = File.ReadAllText("Result Data\\UrlsetWith0Items.xml");
+            var expectedXml = File.ReadAllText("Result Data//UrlsetWith0Items.xml");
 
             // My sample data is a bit messed up - which is why I have to do the `replace`.
             CompareTwoUrlsetDocuments(result, expectedXml);

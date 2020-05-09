@@ -21,7 +21,7 @@ namespace SimpleSiteMap.Tests
             var result = siteMapService.ConvertToXmlSitemap(data);
 
             // Assert.
-            var expectedXml = File.ReadAllText("Result Data\\SitemapWith10Items.xml");
+            var expectedXml = File.ReadAllText("Result Data//SitemapWith10Items.xml");
 
             CompareTwoSitemapDocuments(result, expectedXml);
         }
@@ -38,7 +38,7 @@ namespace SimpleSiteMap.Tests
             var result = siteMapService.ConvertToXmlSitemap(partitionedData);
 
             // Assert.
-            var expectedXml = File.ReadAllText("Result Data\\SitemapWith0Items.xml");
+            var expectedXml = File.ReadAllText("Result Data//SitemapWith0Items.xml");
 
             CompareTwoSitemapDocuments(result, expectedXml);
         }
