@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2026
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleSitemap", "src\SimpleSitemap\SimpleSitemap.csproj", "{3FDFBA27-172A-4EE7-BDFB-C226275E393D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleSiteMap.Tests", "tests\SimpleSiteMap.Tests\SimpleSiteMap.Tests.csproj", "{AB4E22EF-8374-4143-903A-0E4C70F90B62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleSiteMap.Tests", "tests\SimpleSiteMap.Tests\SimpleSiteMap.Tests.csproj", "{AB4E22EF-8374-4143-903A-0E4C70F90B62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
