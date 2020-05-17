@@ -8,7 +8,8 @@ namespace SimpleSiteMap.Tests
         internal static IList<SitemapNode> CreateFakeSitemapNodes(int numberOfNodes,
             DateTime startTime,
             SitemapFrequency? frequency = SitemapFrequency.Daily,
-            double? priority = 0.5)
+            double? priority = 0.5,
+            bool pageParamQuery = true)
         {
             var result = new List<SitemapNode>();
 
@@ -16,7 +17,10 @@ namespace SimpleSiteMap.Tests
             {
                 result.Add(new SitemapNode(
                     new Uri("http://www.foo.com/sitemap/foos"),
-                    startTime.AddSeconds(-i), frequency, priority));
+                    startTime.AddSeconds(-i),
+                    frequency,
+                    priority,
+                    pageParamQuery));
             }
 
             return result;

@@ -7,18 +7,25 @@ namespace SimpleSiteMap
         public SitemapNode(Uri url,
             DateTime lastModified,
             SitemapFrequency? frequency = SitemapFrequency.Daily,
-            double? priority = 0.5)
+            double? priority = 0.5,
+            bool appendPageQueryParam = true)
         {
             Url = url;
             Priority = priority;
             Frequency = frequency;
             LastModified = lastModified;
+            AppendPageQueryParam = appendPageQueryParam;
         }
 
-        public Uri Url { get; set; }
-        public DateTimeOffset LastModified { get; set; }
-        public SitemapFrequency? Frequency { get; set; }
-        public double? Priority { get; set; }
+        public Uri Url { get; }
+        
+        public DateTimeOffset LastModified { get; }
+        
+        public SitemapFrequency? Frequency { get; }
+
+        public double? Priority { get; }
+        
+        public bool AppendPageQueryParam { get; } 
 
         public override string ToString()
         {

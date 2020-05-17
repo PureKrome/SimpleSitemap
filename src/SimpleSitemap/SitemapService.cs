@@ -70,9 +70,10 @@ namespace SimpleSiteMap
                 var page = 0;
                 foreach (var sitemapNode in sitemapNodes)
                 {
-                    var loc = new XElement(xmlns + "loc",
-                        Uri.EscapeUriString(string.Format("{0}/?page={1}", sitemapNode.Url, ++page)));
-
+                    page++;
+                    
+                    var loc = GenerateLocXElement(sitemapNode, page, sitemapNode.AppendPageQueryParam);
+                    
                     var lastMod = new XElement(xmlns + "lastmod",
                         sitemapNode.LastModified.ToString("yyyy-MM-ddTHH:mm:sszzz", CultureInfo.InvariantCulture));
 
@@ -81,6 +82,18 @@ namespace SimpleSiteMap
             }
 
             return root;
+            
+            XElement GenerateLocXElement(SitemapNode sitemapNode, int page, bool appendPageQueryParam)
+            {
+                var uriString = sitemapNode.Url.ToString();
+                
+                if (appendPageQueryParam)
+                {
+                    uriString = $"{uriString}/?page={page}";
+                }
+
+                return new XElement(xmlns + "loc", uriString);
+            }
         }
 
         private static XElement CreateXmlUrlSet(IEnumerable<SitemapNode> sitemapNodes)

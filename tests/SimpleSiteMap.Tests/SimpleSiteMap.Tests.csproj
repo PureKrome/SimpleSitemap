@@ -41,6 +41,9 @@
     <None Update="Result Data\UrlsetWith10ItemsNoChangeFreqOrPriority.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Result Data\SitemapWithNoPageQueryParam.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
