@@ -1,43 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <sitemap>
-        <loc>http://www.foo.com/sitemap/foos/?page=1</loc>
+        <loc>http://www.foo.com/sitemap/foos?page=1</loc>
         <lastmod>2014-11-21T18:58:00+00:00</lastmod>
     </sitemap>
     <sitemap>
-        <loc>http://www.foo.com/sitemap/foos/?page=2</loc>
+        <loc>http://www.foo.com/sitemap/foos?page=2</loc>
         <lastmod>2014-11-21T18:57:50+00:00</lastmod>
     </sitemap>
     <sitemap>
-        <loc>http://www.foo.com/sitemap/foos/?page=3</loc>
+        <loc>http://www.foo.com/sitemap/foos?page=3</loc>
         <lastmod>2014-11-21T18:57:40+00:00</lastmod>
     </sitemap>
     <sitemap>
-        <loc>http://www.foo.com/sitemap/foos/?page=4</loc>
+        <loc>http://www.foo.com/sitemap/foos?page=4</loc>
         <lastmod>2014-11-21T18:57:30+00:00</lastmod>
     </sitemap>
     <sitemap>
-        <loc>http://www.foo.com/sitemap/foos/?page=5</loc>
+        <loc>http://www.foo.com/sitemap/foos?page=5</loc>
         <lastmod>2014-11-21T18:57:20+00:00</lastmod>
     </sitemap>
     <sitemap>
-        <loc>http://www.foo.com/sitemap/foos/?page=6</loc>
+        <loc>http://www.foo.com/sitemap/foos?page=6</loc>
         <lastmod>2014-11-21T18:57:10+00:00</lastmod>
     </sitemap>
     <sitemap>
-        <loc>http://www.foo.com/sitemap/foos/?page=7</loc>
+        <loc>http://www.foo.com/sitemap/foos?page=7</loc>
         <lastmod>2014-11-21T18:57:00+00:00</lastmod>
     </sitemap>
     <sitemap>
-        <loc>http://www.foo.com/sitemap/foos/?page=8</loc>
+        <loc>http://www.foo.com/sitemap/foos?page=8</loc>
         <lastmod>2014-11-21T18:56:50+00:00</lastmod>
     </sitemap>
     <sitemap>
-        <loc>http://www.foo.com/sitemap/foos/?page=9</loc>
+        <loc>http://www.foo.com/sitemap/foos?page=9</loc>
         <lastmod>2014-11-21T18:56:40+00:00</lastmod>
     </sitemap>
     <sitemap>
-        <loc>http://www.foo.com/sitemap/foos/?page=10</loc>
+        <loc>http://www.foo.com/sitemap/foos?page=10</loc>
         <lastmod>2014-11-21T18:56:30+00:00</lastmod>
     </sitemap>
 </sitemapindex>

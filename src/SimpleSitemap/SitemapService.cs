@@ -11,8 +11,11 @@ namespace SimpleSiteMap
     public class SitemapService
     {
         private const string SitemapsNamespace = "http://www.sitemaps.org/schemas/sitemap/0.9";
+#if NETSTANDARD1_2
+        private static readonly string ByteOrderMarkUtf8 = Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble(), 0, Encoding.UTF8.GetPreamble().Length);
+#else
         private static readonly string ByteOrderMarkUtf8 = Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble());
-
+#endif
         /// <summary>
         /// Creates a sitemap for the given collection.
         /// </summary>
@@ -89,7 +92,7 @@ namespace SimpleSiteMap
                 
                 if (appendPageQueryParam)
                 {
-                    uriString = $"{uriString}/?page={page}";
+                    uriString = $"{uriString}?page={page}";
                 }
 
                 return new XElement(xmlns + "loc", uriString);
@@ -152,7 +155,12 @@ namespace SimpleSiteMap
                     xElement.Save(writer);
                 }
 
-                xmlResult = Encoding.UTF8.GetString(memoryStream.ToArray());
+                var array = memoryStream.ToArray();
+#if NETSTANDARD1_2
+                xmlResult = Encoding.UTF8.GetString(array, 0, array.Length);
+#else
+                xmlResult = Encoding.UTF8.GetString(array);
+#endif
             }
 
             if (!string.IsNullOrWhiteSpace(xmlResult) &&
